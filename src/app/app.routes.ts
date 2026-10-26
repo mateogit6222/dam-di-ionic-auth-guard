@@ -10,4 +10,16 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
+  },
+  {
+    path: 'admin',
+    loadComponent: () => import('./pages/admin/admin.page').then( m => m.AdminPage)
+  },
+  {
+    path: 'user-dashboard',
+    loadComponent: () => import('./pages/user-dashboard/user-dashboard.page').then( m => m.UserDashboardPage)
+  },
 ];
