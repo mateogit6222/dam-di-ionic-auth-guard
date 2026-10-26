@@ -1,19 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular';
+import { Router } from '@angular/router';
+import {
+  IonContent, IonHeader, IonTitle, IonToolbar,
+  IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle,
+  IonCardContent, IonButtons, IonButton
+} from '@ionic/angular';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-user-dashboard',
   templateUrl: './user-dashboard.page.html',
   styleUrls: ['./user-dashboard.page.scss'],
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  standalone: true,
+  imports: [
+    CommonModule,
+    IonContent, IonHeader, IonTitle, IonToolbar,
+    IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle,
+    IonCardContent, IonButtons, IonButton
+  ]
 })
-export class UserDashboardPage implements OnInit {
+export class UserDashboardPage {
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
-  constructor() { }
+  public currentSession = this.authService.currentUser;
 
-  ngOnInit() {
+  public handleLogout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
-
 }

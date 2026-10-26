@@ -1,13 +1,21 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>user-dashboard</ion-title>
+  <ion-toolbar color="secondary">
+    <ion-title>Panel del Operador</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="handleLogout()">Cerrar Sesión</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">user-dashboard</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Bienvenido, {{ currentSession()?.username }}</ion-card-title>
+      <ion-card-subtitle>Nivel de acceso: Operador</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Validado por <code>roleGuard('user')</code>.</p>
+      <p>Si intentas escribir <code>/admin</code> en la URL, el sistema te redirigirá aquí.</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
